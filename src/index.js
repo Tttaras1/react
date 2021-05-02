@@ -3,11 +3,24 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import reducer from './store/reducer'
+import {setState} from './store/actions';
+import * as redux from 'redux/src/index';
+
+const Provider = require("react-redux").Provider;
+
+const store = redux.createStore(reducer);
+
+store.dispatch(setState({
+  boxes: []
+}));
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
